@@ -1,20 +1,20 @@
 version: '1'
 services:
   nginx:
+    image: nginx-image:v1
     container_name: nginx-container
     build: ./requirements/nginx
     ports:
       - 443:443
     volumes:
-      - wordpress_data:/var/www/html
-    restart:
-      - always
+      - wordpress_srcs:/var/www/html
+    restart: always
 
 volumes:
-  wordpress_data:
+  wordpress_srcs:
     driver: local
     driver_opts:
       type: bind
       o: bind
-      device: $HOME/inception/srcs/requirements/wordpress/tools/srcs
+      device: /home/hiro/inception/srcs/requirements/wordpress/tools/srcs
 
