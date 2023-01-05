@@ -7,7 +7,7 @@ LABEL	maintainer="hyap howzheng0629@gmail.com" \
 RUN		apt-get update
 RUN		apt-get -y -q install nginx openssl
 # create a dir to mount webiste volume
-RUN		mkdir -p /var/www/html/wordpress
+RUN		mkdir -p /var/www/html
 # generate certs with openssl using sh script
 COPY	tools/create_ssl.sh /tmp/
 RUN		chmod 777 /tmp/create_ssl.sh
