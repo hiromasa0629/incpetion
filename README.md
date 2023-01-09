@@ -4,7 +4,7 @@
 Because the subject requires us to do this project in a virtual machine so here is the link for downloading vm for M1 Macs, [Install UTM](https://mac.getutm.app/). To set up the vm, it similar to how it was set up in 42 B2Br project.
 
 ---
-Make sure you have installed ufw and allowed certain ports
+Make sure you have installed ufw and allowed port 443 for https
 ## **NGINX** (some key notes)
 - Add `daemon off;` in main block (outside of http, events, server blocks)
 - Configure nginx server block:
@@ -13,7 +13,6 @@ Make sure you have installed ufw and allowed certain ports
   - configure path for certificate and key for ssl
   - configure `server_name` (eg. domian name)
   - `root` (dir where wordpress is extracted)
-  - configure `fastcgi` in `location ~ \.php$` block which is a regular expression that matches any URI that ends with ".php",
 
 Dockerfile:
 ```Dockerfile
@@ -37,4 +36,13 @@ nginx:
   volumes: # map local directory to a container directory (list)
   restart: always # it will restart on any exit code
 ```
+
+## **PHP-FPM** (FastCGI Process Manager)
+- It is used to execute PHP scripts in web server environment like NGINX and Apache.
+- Modify nginx.conf server block again with configuring `fastcgi` in `location ~ \.php$` block which is a regular expression that matches any URI that ends with ".php".
+- Configure `www.conf` in /etc/php/\<version>/fpm/pool.d to listen on port 9000
+
+## **Wordpress**
+- use `wget` to download the zipped file from wordpress and extract it and copy all the files in wordpress to /var/html/www
+
 
