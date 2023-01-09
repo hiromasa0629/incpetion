@@ -13,7 +13,7 @@ clean:
 	sudo docker rmi -f `sudo docker images -q`
 	
 fclean: clean
-	rm -r $(WORDPRESS_SRCS)
+	sudo rm -rf $(WORDPRESS_SRCS)
 
 re: clean all
 
