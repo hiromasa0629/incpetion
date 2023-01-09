@@ -33,5 +33,5 @@ volumes:
     driver_opts:
       type: bind
       o: bind
-      device: /home/hiro/inception/srcs/requirements/wordpress/tools/srcs
+      device: ${ROOT_PWD}/srcs/requirements/wordpress/tools/srcs
 
