@@ -8,7 +8,24 @@ services:
       - 443:443
     volumes:
       - wordpress_srcs:/var/www/html
+    networks:
+      - default_network
+    depends_on:
+      - wordpress
     restart: always
+
+  wordpress:
+    image: wordpress-image:v1
+    container_name: wordpress-container
+    build: ./requirements/wordpress
+    volumes:
+      - wordpress_srcs:/var/www/html
+    networks:
+      - default_network
+    restart: always
+
+networks:
+  default_network:
 
 volumes:
   wordpress_srcs:
