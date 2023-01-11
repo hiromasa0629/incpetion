@@ -32,7 +32,7 @@ services:
     container_name: mariadb-container
     build: ./requirements/mariadb
     volumes:
-      - mariadb_srcs:/var/lib/mysql/wordpress_db
+      - mariadb_srcs:/var/lib/mysql/wordpressdb
     networks:
       - default_network
     env_file: .env
@@ -47,13 +47,13 @@ volumes:
     driver_opts:
       type: bind
       o: bind
-      device: ${ROOT_PWD}/srcs/requirements/wordpress/tools/srcs
+      device: /home/hyap/data/wordpress
 
   mariadb_srcs:
     driver: local
     driver_opts:
       type: bind
       o: bind
-      device: ${ROOT_PWD}/srcs/requirements/mariadb/tools/srcs
+      device: /home/hyap/data/wordpressdb
 
 
