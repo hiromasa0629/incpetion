@@ -22,6 +22,20 @@ services:
       - wordpress_srcs:/var/www/html
     networks:
       - default_network
+    depends_on:
+      - mariadb
+    env_file: .env
+    restart: always
+
+  mariadb:
+    image: mariadb-image:v1
+    container_name: mariadb-container
+    build: ./requirements/mariadb
+    volumes:
+      - mariadb_srcs:/var/lib/mysql/wordpress_db
+    networks:
+      - default_network
+    env_file: .env
     restart: always
 
 networks:
@@ -34,4 +48,12 @@ volumes:
       type: bind
       o: bind
       device: ${ROOT_PWD}/srcs/requirements/wordpress/tools/srcs
+
+  mariadb_srcs:
+    driver: local
+    driver_opts:
+      type: bind
+      o: bind
+      device: ${ROOT_PWD}/srcs/requirements/mariadb/tools/srcs
+
 

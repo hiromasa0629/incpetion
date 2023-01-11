@@ -1,9 +1,11 @@
 COMPOSE_YML=./srcs/docker-compose.yml
 WORDPRESS_SRCS=./srcs/requirements/wordpress/tools/srcs
+MARIADB_SRCS=./srcs/requirements/mariadb/tools/srcs
 
 all:
 	mkdir -p $(WORDPRESS_SRCS)
-	sudo ROOT_PWD=${PWD} docker compose -f $(COMPOSE_YML) up -d
+	mkdir -p $(MARIADB_SRCS)
+	sudo ROOT_PWD=${PWD} docker compose -f $(COMPOSE_YML) --verbose up -d
 down:
 	sudo ROOT_PWD=${PWD} docker compose -f $(COMPOSE_YML) down
 
@@ -14,6 +16,7 @@ clean: down
 
 fclean: clean
 	sudo rm -rf $(WORDPRESS_SRCS)
+	docker system prune -a -f
 
 re: clean all
 

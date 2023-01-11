@@ -8,3 +8,4 @@ openssl req -new -key $CERTS_PATH/private.key -out $CERTS_PATH/csr.csr -subj "/C
 openssl x509 -req -days 365 -in $CERTS_PATH/csr.csr -signkey $CERTS_PATH/private.key -out $CERTS_PATH/certificate.crt
 
 
+exec "$@"
