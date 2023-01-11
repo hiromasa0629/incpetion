@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN apt-get update
-RUN apt-get install -y php-fpm wget
+RUN apt-get install -y php-fpm php-mysql wget
 
 COPY conf/www.conf /etc/php/7.3/fpm/pool.d
 

@@ -11,6 +11,9 @@ RUN chmod 777 /run/mysqld
 COPY ./tools/configure_db.sh /
 RUN chmod 777 /configure_db.sh
 
+COPY ./tools/wordpressdb.sql /
+RUN chmod 777 wordpressdb.sql
+
 ENTRYPOINT ["./configure_db.sh"]
 
 CMD ["mysqld"]

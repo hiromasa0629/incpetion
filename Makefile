@@ -16,7 +16,7 @@ clean: down
 
 fclean: clean
 	sudo rm -rf $(WORDPRESS_SRCS)
-	docker system prune -a -f
+	sudo docker system prune -a -f
 
 re: clean all
 
