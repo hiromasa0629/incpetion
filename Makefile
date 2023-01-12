@@ -1,6 +1,8 @@
 COMPOSE_YML=./srcs/docker-compose.yml
 WORDPRESS_SRCS=/home/hyap/data/wordpress
 MARIADB_SRCS=/home/hyap/data/wordpressdb
+VOLUME_COUNT=$(shell sudo docker volume ls -q | wc -l;)
+NETWORK_COUNT=$(shell sudo docker network ls -q | wc -l;)
 
 all:
 	sudo mkdir -p ${WORDPRESS_SRCS}
@@ -12,8 +14,13 @@ down:
 clean: down
 	sudo docker image prune -a -f
 	sudo docker volume prune -f
+ifneq ($(VOLUME_COUNT), 0)
 	sudo docker volume rm `sudo docker volume ls -q`
+endif
 	sudo docker network prune -f
+ifneq ($(NETWORK_COUNT), 3)
+	sudo docker network rm `sudo docker network ls -q`
+endif
 
 fclean: clean
 	sudo rm -rf $(WORDPRESS_SRCS)
