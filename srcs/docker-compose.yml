@@ -32,7 +32,7 @@ services:
     container_name: mariadb-container
     build: ./requirements/mariadb
     volumes:
-      - mariadb_srcs:/var/lib/mysql/wordpressdb
+      - mariadb_srcs:/var/lib/mysql
     networks:
       - default_network
     env_file: .env
