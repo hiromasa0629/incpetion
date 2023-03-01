@@ -61,3 +61,19 @@ nginx:
 - `ENTRYPOINT` and `CMD` works almost the same except if `ENTRYPOINT` exists, `CMD` will be passed as arguments to `ENTRYPOINT`. If `ENTRYPOINT` is executing an `sh` file, make sure add `exec "$@"` at the end of the `sh` file so it will execute `CMD`
 - When sepcifying volumes name in `docker-compose.yml`, note that the device section will not accept relative path.
 
+---
+## Docker
+- Allows developers to package their application and their dependencies into lightweight containers that can be run on any machine.
+- Docker containers are isolated environment that can run application without the need of an dedicated operating system.
+
+## Docker-compose
+- Allows you to define and run multi-container Docker applications.
+- Define network, specify dependencies, storage requirements and more.
+
+## Docker image with docker-compose and without
+- Docker image built without docker-compose is used to run a single container instance.
+- Docker image built with docker-compose usually used to run an application stack where consists of multiple different services.
+
+## Docker vs VMs
+- Docker is lightweight and highly portable, scalability, consistency and isolation.
+
